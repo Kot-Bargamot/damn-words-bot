@@ -1,0 +1,15 @@
+services:
+  engbot:
+    build:
+      context: .
+      args:
+        # прокси для сборки (пусто — без прокси)
+        HTTP_PROXY: ${PROXY_URL:-}
+        HTTPS_PROXY: ${PROXY_URL:-}
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - engbot-data:/app/data
+
+volumes:
+  engbot-data:
